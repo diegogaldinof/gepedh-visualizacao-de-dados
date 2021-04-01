@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     <meta name="author" content="Diego Galdino França" />
     <meta name="author" content="Jaqueline Gazque" />
-    <script src="index_files/header-attrs/header-attrs.js"></script>
-    <link href="index_files/tile-view/tile-view.css" rel="stylesheet" />
-    <script src="index_files/tile-view/tile-view.js"></script>
-    <link href="index_files/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <script src="index_files/clipboard/clipboard.min.js"></script>
-    <link href="index_files/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
-    <script src="index_files/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
-    <link href="index_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/custom.css" type="text/css" />
   </head>
   <body>
@@ -25,66 +25,222 @@
 
 
 
-class: title-slide
+class: slide-titulo
 
 ---
 
-# Head 1
+# Agenda
 
-## Head 2
+1. Tabelas: estrutura, normas...
 
-### Head 3
+2. R &amp; RStudio.
 
-
-Isso é um conteúdo normal. Aqui vamos colocar um `código`. É importante dizer que isso está legal.
-
-
-
+3. Code time!
 
 ---
 
-Brabo, pega o [slide monstro](#slide-1)
+class: slide-b1
+
+---
+
+class: slide-b2
+
+---
+
+name: recap-funcao-1
+
+## Funções
+
+&gt; Uma função é um conjunto de instruções organizadas em conjunto para realizar uma tarefa específica.
+
+Uma função possui quatro componentes:
+
+- **Nome**: é o nome da função (e.g., `mean`, `sd`).
+
+- **Argumentos**: são opcionais. Recebem valores (ou possuem valores *default*) que serão usados pela função para realizar a tarefa.
+
+- **Corpo**: é onde a mágica acontece.
+
+- **Resultado**: é o valor retornado pela função.
+
+
+---
+name: recap-funcao-2
+
+### Exemplo
+
+Função `seq`: cria sequências numéricas.
 
 
 ```r
-x &lt;- 5
-y &lt;- 5
-x + y
+seq(from = 0, to = 10, by = 2) # a ordem nao importa
 ```
 
 ```
-## [1] 10
+## [1]  0  2  4  6  8 10
 ```
+
+```r
+seq(to = 10, by = 2, from = 0)
+```
+
+```
+## [1]  0  2  4  6  8 10
+```
+
+---
+name: recap-funcao-3
+
+### Exemplo
+
+Função `seq`: cria sequências numéricas.
+
+
+
+```r
+seq(0, 10, 2) # a ordem importa
+```
+
+```
+## [1]  0  2  4  6  8 10
+```
+
+```r
+seq(0, 2, 10)
+```
+
+```
+## [1] 0
+```
+
 
 
 ---
 
+name: slide-pipe-1
 
-&gt; A way to do things
+## Pipe Operator
+
+[`%&gt;%`](https://magrittr.tidyverse.org/reference/pipe.html) é chamado de **Pipe Operator**.
+
+Deixa a estrutura dos códigos mais **legível**, **lógica** e **simples**.
+
+No `%&gt;%`, um **objeto** ou **resultado** de uma expressão/função vai ocupar o primeiro argumento da função seguinte.
+
+Atalho: `Ctrl + Shift + m`.
+
+--
 
 
+
+```r
+funcao(objeto)
+```
+
+--
+
+
+```r
+objeto %&gt;% funcao()
+```
 
 
 
 ---
 
-## lfsdmfkfgd
+name: slide-pipe-2
 
-`tydiverse` é um pacote muito legal:
-
-- dá pra fazer isso;
-
-- aquilo
-
-- aquiiiiiiiiii também
-
-- é improtante **demais**
+&lt;h4 style= "color: #c51515"&gt;Bad&lt;/h4&gt;
 
 
+```r
+sair_de_casa(se_vestir(levantar_da_cama(acordar(eu, horario = "8:00"), bom_humor = "on"), jeans = TRUE, camiseta = TRUE), carro = TRUE)
+```
+
+--
+
+
+&lt;h4 style= "color: #0fb324"&gt;Good&lt;/h4&gt;
+
+
+```r
+eu %&gt;%
+  acordar(horario = "8:00") %&gt;%
+  levantar_da_cama(bom_humor = "on") %&gt;%
+  se_vestir(jeans = TRUE, camiseta = TRUE) %&gt;%
+  sair_de_casa(carro = TRUE)
+```
+
+
+**Obs:** Existem funções que não comportam o `%&gt;%`.
+
+.footnote[
+Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projects/01_lab/slides/01_lab.html#116).
+]
 
 ---
 
-# fmkmgdf
+## Tabelas no RStudio
+
+
+### Quais são os benefícios?
+
+.pull-left[
+
+- Eficiência
+
+- Economia de tempo
+
+- Compartilhamento de códigos
+
+- Custo x benefício
+
+]
+
+.pull-right[
+
+- Resultado adequado às normas
+
+- Diferentes formatos (e.g., Word, HTML)
+
+- Pode ser usado com Rmarkdown
+]
+
+---
+
+## Pacotes
+
+.pull-left[
+
+- [`flextable`](https://davidgohel.github.io/flextable/)
+
+- [`huxtable`](https://hughjonesd.github.io/huxtable/)
+
+- [`kableExtra`](https://haozhu233.github.io/kableExtra/)
+
+- [`DT`](https://rstudio.github.io/DT/)
+
+- [`formattable`](https://renkun-ken.github.io/formattable/)
+
+- [`gt`](https://gt.rstudio.com/)
+
+- **[`gtsummary`](http://www.danieldsjoberg.com/gtsummary/)**
+]
+
+.pull-right[
+
+&lt;img src=img/gt.svg&gt;
+
+]
+
+---
+
+class: slide-b3
+
+---
+
+class: obrigado
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
