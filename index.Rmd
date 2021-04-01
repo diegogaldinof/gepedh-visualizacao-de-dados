@@ -58,7 +58,7 @@ name: recap-funcao-1
 
 ## Funções
 
-> Uma função é um conjunto de instruções organizadas em conjunto para realizar uma tarefa específica.
+> Uma função é um conjunto de instruções organizadas para realizar uma tarefa específica.
 
 Uma função possui quatro componentes:
 
@@ -112,6 +112,8 @@ No `%>%`, um **objeto** ou **resultado** de uma expressão/função vai ocupar o
 
 Atalho: `Ctrl + Shift + m`.
 
+
+**Exemplo:**
 --
 
 
