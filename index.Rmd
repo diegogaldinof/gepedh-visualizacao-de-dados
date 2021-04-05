@@ -19,6 +19,8 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
 ```
 
 ```{r xaringanExtra, include=FALSE, warning=FALSE}
@@ -29,6 +31,13 @@ xaringanExtra::use_extra_styles(hover_code_line = TRUE,
                                 mute_unhighlighted_code = FALSE)
 ```
 
+```{r packages, include=FALSE, warning=FALSE}
+library(tidyverse)
+library(gtsummary)
+library(flextable)
+library(labelled)
+library(huxtable)
+```
 
 
 
@@ -38,7 +47,7 @@ class: slide-titulo
 
 # Agenda
 
-1. Tabelas: estrutura, normas...
+1. Tabelas:
 
 2. R & RStudio.
 
@@ -78,6 +87,8 @@ name: recap-funcao-2
 
 Função `seq`: cria sequências numéricas.
 
+- Argumentos declarados
+
 ```{r}
 seq(from = 0, to = 10, by = 2) # a ordem nao importa
 seq(to = 10, by = 2, from = 0)
@@ -89,6 +100,8 @@ name: recap-funcao-3
 ### Exemplo
 
 Função `seq`: cria sequências numéricas.
+
+- Argumentos não-declarados
 
 
 ```{r}
@@ -108,12 +121,12 @@ name: slide-pipe-1
 
 Deixa a estrutura dos códigos mais **legível**, **lógica** e **simples**.
 
-No `%>%`, um **objeto** ou **resultado** de uma expressão/função vai ocupar o primeiro argumento da função seguinte.
+É uma função da família de pacotes [`tidyverse`](https://www.tidyverse.org/).
 
-Atalho: `Ctrl + Shift + m`.
-
+No `%>%`, um **objeto** ou **resultado** de uma expressão/função vai ocupar o **primeiro argumento** da função seguinte.
 
 **Exemplo:**
+
 --
 
 
@@ -153,7 +166,13 @@ eu %>%
 ```
 
 
-**Obs:** Existem funções que não comportam o `%>%`.
+--
+
+**Observações:** 
+
+- Existem funções que não comportam o `%>%`.
+
+- Atalho: `Ctrl + Shift + m`.
 
 .footnote[
 Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projects/01_lab/slides/01_lab.html#116).
@@ -161,20 +180,20 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 ---
 
-## Tabelas no RStudio
+## Tabelas no R
 
 
 ### Quais são os benefícios?
 
 .pull-left[
 
-- Eficiência
+- Minimização de erros
 
 - Economia de tempo
 
 - Compartilhamento de códigos
 
-- Custo x benefício
+- Eficiência
 
 ]
 
@@ -184,14 +203,12 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 - Diferentes formatos (e.g., Word, HTML)
 
-- Pode ser usado com Rmarkdown
+- Integração com `Rmarkdown`
 ]
 
 ---
 
 ### Pacotes
-
-.pull-left[
 
 - [`flextable`](https://davidgohel.github.io/flextable/)
 
@@ -206,13 +223,101 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 - [`gt`](https://gt.rstudio.com/)
 
 - **[`gtsummary`](http://www.danieldsjoberg.com/gtsummary/)**
+
+---
+
+<img src="http://www.danieldsjoberg.com/gtsummary/reference/figures/logo.png" align="right" height="150px">
+
+## [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/)
+
+```{r eval=FALSE}
+install.packages("gtsummary")
+library(gtsummary)
+```
+
+
+> Fornece uma maneira elegante e flexível de criar tabelas analíticas e de resumo prontas para publicação.
+
+
+**Funcionalidades**
+
+- Estatísticas descritivas, comparações de grupos e modelos de regressão
+
+- Detecção automática dos tipos de variáveis (e.g., categóricas, numéricas)
+
+- Customização
+
+- Possibita eu preciso dizer que dá para usar outros pacotes facilmente para salvar as tabelas em outros formatos (e.g., Word). gtsummary é forte em HTML
+
+---
+
+### Banco de dados
+
+Aqui, pegar um banco de dados do R e arrumar ele para ser usado nos próximos passos.
+
+Lembrar de mudar as classes das variáveis para detectar certinho
+
+---
+
+### [`tbl_summary`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html)
+
+Função principal do `gtsummary`.
+
+Calcula estatísticas descritivas para variáveis contínuas, categóricas e binárias.
+
+
+
+```{r}
+trial %>%
+  tbl_summary()
+```
+
+
+---
+
+### Argumentos
+
+`label`
+
+Especifica os nomes das variáveis na tabela.
+
+???
+O pacote mantém o nome das variáveis do banco, por isso é preciso mudar.
+
+`var1 ~ "Variável 1"`
+
+```{r eval=FALSE}
+trial %>%
+  tbl_summary(label = var1 ~ "Variável 1") # apenas uma variavel
+```
+
+
+Também é possível criar uma lista e aplicá-la no argumento:
+
+```{r eval=FALSE}
+nomes_variaveis <- list(var2 ~ "Variável 2", var1 ~ "Variável 1") # precisa ser lista
+trial %>%
+  tbl_summary(label = nomes_variaveis)
+```
+
+
+.footnote[
+Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/labelled/)
 ]
+---
 
-.pull-right[
+`statistic`
 
-<img src=img/gt.svg>
+ Tem como colocar duas colunas, uma de média e outra de dp???
 
-]
+
+
+
+
+
+
+
+
 
 ---
 

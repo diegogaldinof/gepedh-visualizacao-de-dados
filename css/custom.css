@@ -260,28 +260,23 @@ blockquote {
 }
 .remark-slide table {
   margin: auto;
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
 }
 .remark-slide table thead th {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
 }
 th, td {
   padding: 5px;
 }
 .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) {
-  background: #FFEAD1;
+  background: #ffffff;
 }
 table.dataTable tbody {
   background-color: var(--background-color);
   color: var(--text-color);
 }
-table.dataTable.display tbody tr.odd {
-  background-color: var(--background-color);
-}
-table.dataTable.display tbody tr.even {
-  background-color: #FFEAD1;
-}
+
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
