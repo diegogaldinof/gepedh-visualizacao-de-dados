@@ -20,7 +20,9 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE)
+                      message = FALSE,
+                      eval = FALSE,
+                      fig.align = "center")
 ```
 
 ```{r xaringanExtra, include=FALSE, warning=FALSE}
@@ -89,7 +91,7 @@ Função `seq`: cria sequências numéricas.
 
 - Argumentos declarados
 
-```{r}
+```{r eval=TRUE}
 seq(from = 0, to = 10, by = 2) # a ordem nao importa
 seq(to = 10, by = 2, from = 0)
 ```
@@ -104,7 +106,7 @@ Função `seq`: cria sequências numéricas.
 - Argumentos não-declarados
 
 
-```{r}
+```{r eval=TRUE}
 seq(0, 10, 2) # a ordem importa
 seq(0, 2, 10)
 ```
@@ -130,13 +132,13 @@ No `%>%`, um **objeto** ou **resultado** de uma expressão/função vai ocupar o
 --
 
 
-```{r eval=FALSE}
+```{r}
 funcao(objeto)
 ```
 
 --
 
-```{r eval=FALSE}
+```{r}
 objeto %>% funcao()
 ```
 
@@ -148,7 +150,7 @@ name: slide-pipe-2
 
 <h4 style= "color: #c51515">Bad</h4>
 
-```{r eval = FALSE}
+```{r}
 sair_de_casa(se_vestir(levantar_da_cama(acordar(eu, horario = "8:00"), bom_humor = "on"), jeans = TRUE, camiseta = TRUE), carro = TRUE)
 ```
 
@@ -157,7 +159,7 @@ sair_de_casa(se_vestir(levantar_da_cama(acordar(eu, horario = "8:00"), bom_humor
 
 <h4 style= "color: #0fb324">Good</h4>
 
-```{r eval = FALSE}
+```{r}
 eu %>%
   acordar(horario = "8:00") %>%
   levantar_da_cama(bom_humor = "on") %>%
@@ -193,7 +195,6 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 - Compartilhamento de códigos
 
-- Eficiência
 
 ]
 
@@ -201,14 +202,18 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 - Resultado adequado às normas
 
+- Integração com `Rmarkdown`
+
 - Diferentes formatos (e.g., Word, HTML)
 
-- Integração com `Rmarkdown`
 ]
 
 ---
 
 ### Pacotes
+
+.pull-left[
+
 
 - [`flextable`](https://davidgohel.github.io/flextable/)
 
@@ -224,13 +229,24 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 - **[`gtsummary`](http://www.danieldsjoberg.com/gtsummary/)**
 
+]
+
+
+.pull-right[
+```{r echo=FALSE, eval = TRUE, out.width="100%"}
+knitr::include_graphics("https://www.pngitem.com/pimgs/m/485-4859452_blank-package-png-pic-package-icon-transparent-png.png")
+```
+]
+
+
+
 ---
 
 <img src="http://www.danieldsjoberg.com/gtsummary/reference/figures/logo.png" align="right" height="150px">
 
 ## [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/)
 
-```{r eval=FALSE}
+```{r}
 install.packages("gtsummary")
 library(gtsummary)
 ```
@@ -247,7 +263,7 @@ library(gtsummary)
 
 - Customização
 
-- Possibita eu preciso dizer que dá para usar outros pacotes facilmente para salvar as tabelas em outros formatos (e.g., Word). gtsummary é forte em HTML
+- Integração com outros pacotes (e.g., `gt`, `flextable`, `huxtable`)
 
 ---
 
@@ -277,51 +293,229 @@ trial %>%
 
 ### Argumentos
 
-`label`
+#### `label`
 
 Especifica os nomes das variáveis na tabela.
+
+
+Uso: `variavel_1 ~ "Variável 1"`
+
+```{r}
+trial %>%
+  tbl_summary(label = variavel_1 ~ "Variável 1") # apenas uma variavel
+```
+
+
+
+---
+
+
+
+Para editar o nome de duas ou mais variáveis, criar uma lista com a função `list()`:
+
+```{r}
+nomes_variaveis <- list(var2 ~ "Variável 2",
+                        var1 ~ "Variável 1")
+trial %>%
+  tbl_summary(label = nomes_variaveis) # tbl_summary(label = list(...))
+```
+
+
+.footnote[
+Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/labelled/).
+]
+
+
 
 ???
 O pacote mantém o nome das variáveis do banco, por isso é preciso mudar.
 
-`var1 ~ "Variável 1"`
+---
 
-```{r eval=FALSE}
+#### `statistic`
+
+Especifica a estatística descritiva apresentada na tabela, diferenciando variáveis **contínuas** (i.e., numéricas) e **categóricas**.
+
+Exemplos:
+
+```{r}
 trial %>%
-  tbl_summary(label = var1 ~ "Variável 1") # apenas uma variavel
+  tbl_summary(statistic = list(variavel_1 ~ "{median}"))
+```
+
+--
+
+```{r}
+trial %>%
+  tbl_summary(statistic = c(variavel_1, variavel_2) ~ "{mean}")
+```
+
+--
+
+```{r}
+trial %>%
+  tbl_summary(statistic = list(c(variavel_1, variavel_2) ~ "{mean}",
+                               variavel_3 ~ "{n}"))
 ```
 
 
-Também é possível criar uma lista e aplicá-la no argumento:
 
-```{r eval=FALSE}
-nomes_variaveis <- list(var2 ~ "Variável 2", var1 ~ "Variável 1") # precisa ser lista
+.footnote[
+Outras maneiras de uso podem ser encontradas no [manual](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html#customize-output-1).
+]
+
+---
+
+#### Contínuas
+
+*Default* é mediana e quartis:
+
+```{r}
 trial %>%
   tbl_summary(label = nomes_variaveis)
 ```
 
 
-.footnote[
-Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/labelled/)
-]
 ---
 
-`statistic`
 
- Tem como colocar duas colunas, uma de média e outra de dp???
+Mudando para média e desvio padrão:
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(nome_da_variavel ~ "{mean} ({sd})"))
+```
 
 
+---
+
+Usando a função `all_continuous()` para modificar todas as variáveis contínuas:
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(all_continuous() ~ "{mean} ({sd})"))
+```
 
 
+---
 
 
+Medidas para variáveis contínuas:
+
+- `{median}`: mediana
+
+- `{p##}`: percentil, onde ## é um número de 0 a 100 (e.g., `p25` representa o 1º quartil)
+
+- `{mean}`: média
+
+- `{sd}`: desvio padrão
 
 
+.footnote[
+Outras medidas possíveis para essa função estão disponíveis em `?tbl_summary`.
+]
+
+---
+
+
+#### Categóricas
+
+*Default* é n e porcentagem:
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis)
+```
+
+---
+
+Mudando para n / N (amostra) e porcentagem:
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(nome_da_variavel ~ "{n} / {N} ({p})"))
+```
+
+
+---
+
+Usando a função `all_categorical()` para modificar todas as variáveis categóricas:
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(all_categorical() ~ "{n} / {N} ({p})"))
+```
+
+---
+
+Medidas para variáveis categóricas:
+
+- `{n}`: n da categoria
+
+- `{N}`: n amostral
+
+- `{p}`: porcentagem
+
+
+---
+
+Modificando as variáveis contínuas e categóricas:
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(all_categorical() ~ "{n} / {N} ({p})",
+                               all_continuous() ~ "{mean} ({sd})",
+                               var1 ~ "{median}"))
+```
 
 
 ---
 
 class: slide-b3
+
+---
+
+### Exercício 1
+
+sss
+
+---
+
+#### `by`
+
+Recebe **uma** variável categórica (e.g., `sexo`).
+
+Estatísticas descritivas serão calculadas para cada categoria da variável (e.g., `feminino` e `masculino`).
+
+É um ponto de partida para os testes de comparação de grupos.
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo)
+```
+
+
+---
+
+#### `digits`
+
+Especifica o número de casas decimais para as medidas das variáveis **contínuas**.
+
+Uso: `digits = variavel_1 ~ #`, onde # indica o número de casas decimais.
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(all_categorical() ~ "{n} / {N} ({p})",
+                               all_continuous() ~ "{mean} ({sd})"),
+              digits = list(all_continuous() ~ 0))
+```
+
 
 ---
 
