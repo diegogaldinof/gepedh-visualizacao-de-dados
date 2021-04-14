@@ -17,7 +17,7 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, eval=TRUE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(warning = FALSE,
                       message = FALSE,
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(warning = FALSE,
                       fig.align = "center")
 ```
 
-```{r xaringanExtra, include=FALSE, warning=FALSE}
+```{r xaringanExtra, include=FALSE, eval = TRUE}
 xaringanExtra::use_tile_view()
 xaringanExtra::use_animate_css()
 xaringanExtra::use_clipboard()
@@ -33,7 +33,7 @@ xaringanExtra::use_extra_styles(hover_code_line = TRUE,
                                 mute_unhighlighted_code = FALSE)
 ```
 
-```{r packages, include=FALSE, warning=FALSE}
+```{r packages, include=FALSE, eval=TRUE}
 library(tidyverse)
 library(gtsummary)
 library(flextable)
@@ -311,7 +311,7 @@ trial %>%
 
 
 
-Para editar o nome de duas ou mais variáveis, criar uma lista com a função `list()`:
+Para editar o nome de duas ou mais variáveis, criar uma *lista* com a função `list()`:
 
 ```{r}
 nomes_variaveis <- list(var2 ~ "Variável 2",
@@ -490,9 +490,9 @@ sss
 
 Recebe **uma** variável categórica (e.g., `sexo`).
 
-Estatísticas descritivas serão calculadas para cada categoria da variável (e.g., `feminino` e `masculino`).
+- Estatísticas descritivas serão calculadas para cada categoria da variável (e.g., `feminino` e `masculino`).
 
-É um ponto de partida para os testes de comparação de grupos.
+- É um ponto de partida para os testes de comparação de grupos.
 
 ```{r}
 trial %>%
