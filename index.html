@@ -317,7 +317,7 @@ trial %&gt;%
 
 
 
-Para editar o nome de duas ou mais variáveis, criar uma lista (`list()`):
+Para editar o nome de duas ou mais variáveis, criar uma lista com a função `list()`:
 
 
 ```r
@@ -329,7 +329,7 @@ trial %&gt;%
 
 
 .footnote[
-Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/labelled/)
+Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/labelled/).
 ]
 
 
@@ -348,7 +348,7 @@ Exemplos:
 
 ```r
 trial %&gt;%
-  tbl_summary(statistic = list(variavel_1 ~ {median}))
+  tbl_summary(statistic = list(variavel_1 ~ "{median}"))
 ```
 
 --
@@ -524,7 +524,7 @@ trial %&gt;%
 
 Especifica o número de casas decimais para as medidas das variáveis **contínuas**.
 
-Uso: `digits = variavel_1 ~ #`, onde # especifica o número de casas decimais.
+Uso: `digits = variavel_1 ~ #`, onde # indica o número de casas decimais.
 
 
 ```r
@@ -532,7 +532,7 @@ trial %&gt;%
   tbl_summary(label = nomes_variaveis,
               statistic = list(all_categorical() ~ "{n} / {N} ({p})",
                                all_continuous() ~ "{mean} ({sd})"),
-              digits = list(all_continuous() ~ 2))
+              digits = list(all_continuous() ~ 0))
 ```
 
 
