@@ -6,6 +6,14 @@
     <meta name="author" content="Diego Galdino França" />
     <meta name="author" content="Jaqueline Gazque" />
     <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <link href="libs/countdown/countdown.css" rel="stylesheet" />
     <script src="libs/countdown/countdown.js"></script>
     <link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -280,7 +288,7 @@ Lembrar de mudar as classes das variáveis para detectar certinho
 
 ---
 
-### [`tbl_summary`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html)
+### [`tbl_summary()`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html)
 
 Função principal do `gtsummary`.
 
@@ -337,6 +345,25 @@ Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/l
 
 ???
 O pacote mantém o nome das variáveis do banco, por isso é preciso mudar.
+
+---
+
+class: slide-b3
+
+---
+
+### Exercício 1
+
+1. Crie uma tabela descritiva com o banco de dados.
+
+2. Modifique os nomes das variáveis...
+
+
+<div class="countdown" id="timer_6077b073" style="top:0;right:0;font-size:3em;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
 
 ---
 
@@ -494,24 +521,6 @@ trial %&gt;%
 
 ---
 
-class: slide-b3
-
----
-
-### Exercício 1
-
-sss
-
-
-<div class="countdown" id="timer_60767bd1" style="top:0;right:0;font-size:3em;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-
-
-
-
----
-
 #### `by`
 
 Recebe **uma** variável categórica (e.g., `sexo`).
@@ -543,6 +552,63 @@ trial %&gt;%
                                all_continuous() ~ "{mean} ({sd})"),
               digits = list(all_continuous() ~ 0))
 ```
+
+
+---
+
+class: slide-b3
+
+---
+
+### Exercício 2
+
+
+1. Crie uma tabela usando média e desvio padrão para variáveis contínuas.
+
+2. Faça uma tabela em função de uma variável categórica do banco de dados.
+
+
+<div class="countdown" id="timer_6077ae9b" style="top:0;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
+
+### `add_overall()`
+
+Essa função é utilizada após a função `tbl_summary(..., by = variavel)`.
+
+Cria uma nova coluna com as estatísticas descritivas das variáveis desconsiderando a divisão feita pela variável categórica.
+
+
+```r
+trial %&gt;%
+  tbl_summary(by = variavel_grupo) %&gt;%
+  add_overall()
+```
+
+
+???
+É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
+---
+
+#### `col_label`
+
+É um argumento que modifica o nome dessa coluna.
+
+O *default* é "**Overall**, N = {N}".
+
+---
+
+
+### `add_p()`
+
+É uma função usada para **comparar** grupos.
+
+Adiciona uma coluna de valores-p automaticamente.
+
+
 
 ---
 

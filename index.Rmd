@@ -17,7 +17,7 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, eval=TRUE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	eval = FALSE,
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r xaringanExtra, include=FALSE}
+```{r xaringanExtra, include=FALSE, eval=TRUE}
 xaringanExtra::use_tile_view()
 xaringanExtra::use_animate_css()
 xaringanExtra::use_clipboard()
@@ -35,7 +35,7 @@ xaringanExtra::use_extra_styles(hover_code_line = TRUE,
                                 mute_unhighlighted_code = FALSE)
 ```
 
-```{r packages, include=FALSE}
+```{r packages, include=FALSE, eval=TRUE}
 library(tidyverse)
 library(gtsummary)
 library(flextable)
@@ -277,7 +277,7 @@ Lembrar de mudar as classes das variáveis para detectar certinho
 
 ---
 
-### [`tbl_summary`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html)
+### [`tbl_summary()`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html)
 
 Função principal do `gtsummary`.
 
@@ -331,6 +331,32 @@ Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/l
 
 ???
 O pacote mantém o nome das variáveis do banco, por isso é preciso mudar.
+
+---
+
+class: slide-b3
+
+---
+
+### Exercício 1
+
+1. Crie uma tabela descritiva com o banco de dados.
+
+2. Modifique os nomes das variáveis...
+
+
+```{r countdown, echo = FALSE, eval = TRUE}
+countdown(minutes = 5, seconds = 0,
+          font_size = "3em",
+          top = 0,
+          color_text = "#180D5B",
+          color_running_background = "#fff",
+          color_running_text = "#180D5B",
+          color_finished_background = "#180D5B",
+          color_finished_text = "#fff")
+```
+
+
 
 ---
 
@@ -478,31 +504,6 @@ trial %>%
 
 ---
 
-class: slide-b3
-
----
-
-### Exercício 1
-
-sss
-
-
-```{r countdown, echo = FALSE, eval = TRUE}
-countdown(minutes = 1, seconds = 0,
-          font_size = "3em",
-          top = 0,
-          color_text = "#180D5B",
-          color_running_background = "#fff",
-          color_running_text = "#180D5B",
-          color_finished_background = "#180D5B",
-          color_finished_text = "#fff")
-```
-
-
-
-
----
-
 #### `by`
 
 Recebe **uma** variável categórica (e.g., `sexo`).
@@ -532,6 +533,62 @@ trial %>%
                                all_continuous() ~ "{mean} ({sd})"),
               digits = list(all_continuous() ~ 0))
 ```
+
+
+---
+
+class: slide-b3
+
+---
+
+### Exercício 2
+
+
+1. Crie uma tabela usando média e desvio padrão para variáveis contínuas.
+
+2. Faça uma tabela em função de uma variável categórica do banco de dados.
+
+
+```{r, echo = FALSE, eval = TRUE}
+countdown(minutes = 5, seconds = 0, top = 0)
+```
+
+
+---
+
+### `add_overall()`
+
+Essa função é utilizada após a função `tbl_summary(..., by = variavel)`.
+
+Cria uma nova coluna com as estatísticas descritivas das variáveis desconsiderando a divisão feita pela variável categórica.
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_overall()
+```
+
+
+???
+É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
+---
+
+#### `col_label`
+
+É um argumento que modifica o nome dessa coluna.
+
+O *default* é "**Overall**, N = {N}".
+
+---
+
+
+### `add_p()`
+
+É uma função usada para **comparar** grupos.
+
+Adiciona uma coluna de valores-p automaticamente.
+
+
 
 ---
 
