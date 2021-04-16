@@ -29,7 +29,6 @@ knitr::opts_chunk$set(
 
 ```{r xaringanExtra, include=FALSE, eval=TRUE}
 xaringanExtra::use_tile_view()
-xaringanExtra::use_animate_css()
 xaringanExtra::use_clipboard()
 xaringanExtra::use_extra_styles(hover_code_line = TRUE,
                                 mute_unhighlighted_code = FALSE)
@@ -259,11 +258,9 @@ library(gtsummary)
 
 **Funcionalidades**
 
-- Estatísticas descritivas, comparações de grupos e modelos de regressão
+- Estatísticas descritivas, comparações de grupos e modelos de regressão **automatizados**
 
 - Detecção automática dos tipos de variáveis (e.g., categóricas, numéricas)
-
-- Customização
 
 - Integração com outros pacotes (e.g., `gt`, `flextable`, `huxtable`)
 
@@ -558,9 +555,10 @@ countdown(minutes = 5, seconds = 0, top = 0)
 
 ### `add_overall()`
 
-Essa função é utilizada após a função `tbl_summary(..., by = variavel)`.
+É utilizada após a função `tbl_summary(..., by = variavel)`.
 
-Cria uma nova coluna com as estatísticas descritivas das variáveis desconsiderando a divisão feita pela variável categórica.
+Cria uma nova coluna com as estatísticas descritivas *gerais* das variáveis.
+
 
 ```{r}
 trial %>%
@@ -571,11 +569,13 @@ trial %>%
 
 ???
 É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
+
+
 ---
 
 #### `col_label`
 
-É um argumento que modifica o nome dessa coluna.
+É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
 
 O *default* é "**Overall**, N = {N}".
 

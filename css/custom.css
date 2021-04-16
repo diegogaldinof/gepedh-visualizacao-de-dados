@@ -146,11 +146,11 @@ strong {
 a, a > code {
   color: var(--code-color);
   text-decoration-line: none;
+  font-weight: 500;
 }
 
 a:hover {
   opacity: 0.7;
-  font-weight: 500;
 }
 
 .footnote {
