@@ -577,7 +577,7 @@ trial %>%
 
 É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
 
-O *default* é "**Overall**, N = {N}". Vamos trocar para "**Total**, N = {N}".
+O *default* é `"**Overall**, N = {N}"`. Vamos trocar para `"**Total**, N = {N}"`.
 
 ```{r}
 trial %>%
@@ -636,7 +636,7 @@ Testes disponíveis na função `add_p()`:
 
   - Teste U de Mann-Whitney (`"wilcox.test"`) - _**default**_ quando a *variável categórica* possui 2 categorias;
   
-  - ANOVA *one-way* (`"aov`");
+  - ANOVA *one-way* (`"aov"`);
   
   - Teste de Kruskal-Wallis (`"kruskal.test"`) - _**default**_ quando a *variável categórica* possui 3 ou mais categorias;
   
@@ -649,7 +649,7 @@ Testes disponíveis na função `add_p()`:
 
 - **Categóricas**:
 
-  - Qui-quadrado ("`chisq.test"`);
+  - Qui-quadrado (`"chisq.test"`);
 
   - Qui-quadrado sem correção (`"chisq.test.no.correct"`) - _**default**_ quando a quantidade de pessoas em cada célula é $\geq$ 5;
   
