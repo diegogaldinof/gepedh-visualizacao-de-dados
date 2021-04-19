@@ -90,10 +90,10 @@ name: recap-funcao-2
 
 Função `seq`: cria sequências numéricas.
 
-- Argumentos declarados
+- Argumentos declarados (a ordem não importa):
 
 ```{r eval=TRUE}
-seq(from = 0, to = 10, by = 2) # a ordem nao importa
+seq(from = 0, to = 10, by = 2)
 seq(to = 10, by = 2, from = 0)
 ```
 
@@ -104,11 +104,11 @@ name: recap-funcao-3
 
 Função `seq`: cria sequências numéricas.
 
-- Argumentos não-declarados
+- Argumentos não-declarados (a ordem importa):
 
 
 ```{r eval=TRUE}
-seq(0, 10, 2) # a ordem importa
+seq(0, 10, 2)
 seq(0, 2, 10)
 ```
 
@@ -577,7 +577,15 @@ trial %>%
 
 É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
 
-O *default* é "**Overall**, N = {N}".
+O *default* é "**Overall**, N = {N}". Vamos trocar para "**Total**, N = {N}".
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_overall(col_label = "**Total**, N = {N}")
+```
+
+
 
 ---
 
@@ -588,7 +596,150 @@ O *default* é "**Overall**, N = {N}".
 
 Adiciona uma coluna de valores-p automaticamente.
 
+É utilizada após a função `tbl_summary(..., by = variavel)`.
 
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_p()
+```
+
+
+???
+É usada depois da tbl_summary() porque o primeiro argumento do add_p() recebe a saída da tbl_summary() (objeto tbl_summary).
+
+
+---
+
+### Argumentos
+
+#### `test`
+
+Especifica o teste estatístico que será utilizado para comparar os grupos.
+
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_p(test = list(all_continuous() ~ "wilcox.test",
+                    all_categorical() ~ "chisq.test.no.correct"))
+```
+
+
+---
+
+Testes disponíveis na função `add_p()`:
+
+- **Contínuas**:
+
+  - Teste *t* (`"t.test"`);
+
+  - Teste U de Mann-Whitney (`"wilcox.test"`) - _**default**_ quando a *variável categórica* possui 2 categorias;
+  
+  - ANOVA *one-way* (`"aov`");
+  
+  - Teste de Kruskal-Wallis (`"kruskal.test"`) - _**default**_ quando a *variável categórica* possui 3 ou mais categorias;
+  
+  - Teste *t* pareado (`"paired.t.test"`);
+  
+  - Teste de Wilcoxon (`"paired.wilcox.test"`).
+  
+  
+---
+
+- **Categóricas**:
+
+  - Qui-quadrado ("`chisq.test"`);
+
+  - Qui-quadrado sem correção (`"chisq.test.no.correct"`) - _**default**_ quando a quantidade de pessoas em cada célula é $\geq$ 5;
+  
+  - Teste de Fisher (`"fisher.test"`) - _**default**_ quando a quantidade de pessoas em pelo menos uma célula é < 5;
+  
+  - Teste de Mcnemar (`"mcnemar.test"`)
+  
+  
+.footnote[
+Para conferir outros testes disponíveis, veja o [manual](http://www.danieldsjoberg.com/gtsummary/reference/tests.html).
+]
+
+---
+
+#### `pvalue_fun`
+
+É usado para modificar o formato dos valores-p (*opcional*). *Default* é uma casa decimal.
+
+Esse argumento recebe uma função. É recomendado usar a função `style_pvalue()` do próprio pacote ([clique aqui](http://www.danieldsjoberg.com/gtsummary/reference/style_pvalue.html) para saber mais).
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_p(pvalue_fun = function(x) style_pvalue(x, digits = 2, decimal.mark = ","))
+```
+
+
+???
+É recomendado usar a função style_pvalue() porque criar uma outra função de p-value é difícil. Essa função já tem alguns padrões criados para facilitar a vida.
+
+
+---
+
+### Funções extras
+
+- `bold_labels()`: Coloca os **nomes** das variáveis em **negrito**.
+
+- `italicize_labels()`: Coloca os *nomes* das variáveis em *itálico*.
+
+```{r}
+trial %>%
+  tbl_summary() %>%
+  bold_labels()
+```
+
+
+---
+
+- `bold_levels()`: Coloca os **níveis** das variáveis em **negrito**.
+
+- `italicize_levels()`: Coloca os *níveis* das variáveis em *itálico*.
+
+```{r}
+trial %>%
+  tbl_summary() %>%
+  italicize_levels()
+```
+
+
+---
+
+- `bold_p()`: Coloca os valores-p em **negrito** de acordo com algum valor (*default* é < 0.05).
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_p() %>%
+  bold_p(t = 0.01)
+```
+
+
+---
+
+TÓPICOS:
+
+tbl_merge
+
+tbl_stack
+
+tbl_strata
+
+
+modify_header - entra (modifica os headers das colunas) (vou ter que falar da show_header_names() e all_stat_cols())
+
+modify_spanning_header - boa também (ela vai adiconar um header acima)
+
+
+theme_gtsummary_mean_sd()
+
+theme_gtsummary_language
 
 ---
 
