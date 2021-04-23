@@ -515,7 +515,7 @@ class: slide-b3
 
 Recebe **uma** variável categórica (e.g., `sexo`).
 
-- Estatísticas descritivas serão calculadas para cada categoria da variável (e.g., `feminino` e `masculino`).
+- Estatísticas descritivas serão calculadas para cada **categoria** da variável (e.g., `feminino` e `masculino`).
 
 - É um ponto de partida para os testes de comparação de grupos.
 
@@ -771,7 +771,7 @@ tbl_stack
 tbl_strata
 
 
-modify_header - entra (modifica os headers das colunas) (vou ter que falar da show_header_names() e all_stat_cols())
+modify_header - entra (modifica os headers das colunas) (vamos ter que falar da show_header_names() e all_stat_cols())
 
 modify_spanning_header - boa também (ela vai adiconar um header acima)
 
