@@ -41,6 +41,7 @@ library(flextable)
 library(labelled)
 library(huxtable)
 library(countdown)
+library(emo)
 ```
 
 
@@ -76,9 +77,9 @@ Para fins didáticos, uma função possui:
 
 - **Nome**: é o nome da função (e.g., `mean`, `sd`).
 
-- **Argumentos**: são opcionais. Recebem valores (ou possuem valores *default*) que serão usados pela função para realizar a tarefa.
+- **Argumentos**: recebem valores (ou possuem valores *default*) que serão usados pela função para realizar a tarefa.
 
-- **Corpo**: é onde a mágica acontece.
+- **Corpo**: é onde está o código da função.
 
 .footnote[
 Para você entender mais sobre funções, veja o [capítulo 6](https://adv-r.hadley.nz/functions.html#introduction-5) do livro *Advanced R*, do Hadley Wickham.
@@ -91,7 +92,7 @@ name: recap-funcao-2
 
 Função `seq()`: cria sequências numéricas.
 
-- Argumentos declarados (a ordem não importa):
+- Argumentos declarados pelo nome (a ordem não importa):
 
 ```{r eval=TRUE}
 seq(from = 0, to = 10, by = 2)
@@ -101,7 +102,7 @@ seq(to = 10, by = 2, from = 0)
 ---
 name: recap-funcao-3
 
-- Argumentos não-declarados (a ordem importa):
+- Argumentos declarados por posição (a ordem importa):
 
 
 ```{r eval=TRUE}
@@ -110,6 +111,10 @@ seq(0, 2, 10)
 ```
 
 
+**Observação**:
+
+- use os argumentos por posição apenas no primeiro ou nos dois primeiros argumentos da função.
+
 
 ---
 
@@ -117,9 +122,9 @@ name: slide-pipe-1
 
 ## Pipe Operator
 
-[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html) é chamado de **Pipe Operator**.
+[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html) é chamado de **Pipe Operator** e é pronunciado como *"e então"* (*"and then"*).
 
-Deixa a estrutura dos códigos mais **legível**, **lógica** e **simples**.
+Deixa a estrutura dos códigos mais **legível** e **simples**.
 
 
 No `%>%`, um **objeto** ou **resultado** de uma expressão/função vai ocupar o **primeiro argumento** da função seguinte.
@@ -207,9 +212,11 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 ---
 
-### Pacotes
+
 
 .pull-left[
+
+### Pacotes
 
 
 - [`flextable`](https://davidgohel.github.io/flextable/)
@@ -230,8 +237,8 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 
 .pull-right[
-```{r echo=FALSE, eval = TRUE, out.width="100%"}
-knitr::include_graphics("https://www.pngitem.com/pimgs/m/485-4859452_blank-package-png-pic-package-icon-transparent-png.png")
+```{r echo=FALSE, eval = TRUE, out.width="100%", fig.align='center'}
+knitr::include_graphics("http://www.pngmart.com/files/11/Blank-Package-PNG-Pic.png")
 ```
 ]
 
@@ -494,6 +501,13 @@ trial %>%
                                var1 ~ "{median}"))
 ```
 
+---
+
+class: slide-b3
+
+---
+
+### Exercício 2
 
 ---
 
@@ -515,7 +529,7 @@ trial %>%
 
 #### `digits`
 
-Especifica o número de casas decimais para as medidas das variáveis **contínuas**.
+Especifica o número de casas decimais para as medidas das variáveis **contínuas** e **categóricas**.
 
 Uso: `digits = variavel_1 ~ #`, onde # indica o número de casas decimais.
 
@@ -524,9 +538,32 @@ trial %>%
   tbl_summary(label = nomes_variaveis,
               statistic = list(all_categorical() ~ "{n} / {N} ({p})",
                                all_continuous() ~ "{mean} ({sd})"),
-              digits = list(all_continuous() ~ 0))
+              digits = list(all_categorical() ~ 1,
+                            all_continuous() ~ 0))
 ```
 
+---
+
+Para especificar a quantidade de casas decimais para **cada** medida descritiva (e.g., *n*, média e desvio padrão):
+
+```{r}
+trial %>%
+  tbl_summary(label = nomes_variaveis,
+              statistic = list(all_categorical() ~ "{n} / {N} ({p})",
+                               all_continuous() ~ "{mean} ({sd})"),
+              digits = list(all_categorical() ~ c(0, 0, 1),
+                            all_continuous() ~ c(0, 1)))
+```
+
+Em `all_categorical() ~ c(0, 0, 1)`:
+
+- `0` indica **nenhuma** casa decimal para o *n* `{n}`;
+
+- `0` indica **nenhuma** casa decimal para o *n amostral* `{N}`;
+
+- `1` indica **uma** casa decimal para a *porcentagem* `{p}`.
+
+`r emo::ji("question")` O que acontecerá com as casas decimais da **média** e **desvio padrão**?
 
 ---
 
@@ -534,7 +571,7 @@ class: slide-b3
 
 ---
 
-### Exercício 2
+### Exercício 3
 
 
 1. Crie uma tabela usando média e desvio padrão para variáveis contínuas.
@@ -651,14 +688,20 @@ Testes disponíveis na função `add_p()`:
   
   - Teste de Fisher (`"fisher.test"`) - _**default**_ quando a quantidade de pessoas em pelo menos uma célula é < 5;
   
-  - Teste de Mcnemar (`"mcnemar.test"`)
+  - Teste de Mcnemar (`"mcnemar.test"`).
   
-  
-.footnote[
-Para conferir outros testes disponíveis, veja o [manual](http://www.danieldsjoberg.com/gtsummary/reference/tests.html).
-]
+<br>
+
+Para conferir outros testes disponíveis ou para aprender a criar uma nova função de testes, veja o [manual](http://www.danieldsjoberg.com/gtsummary/reference/tests.html).
 
 ---
+
+#### `test.args`
+
+
+
+---
+
 
 #### `pvalue_fun`
 
@@ -736,6 +779,10 @@ modify_spanning_header - boa também (ela vai adiconar um header acima)
 theme_gtsummary_mean_sd()
 
 theme_gtsummary_language
+
+---
+
+### Como salvar a tabela?
 
 ---
 
