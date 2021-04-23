@@ -111,9 +111,9 @@ seq(0, 2, 10)
 ```
 
 
-**Observação**:
+**Observação**
 
-- use os argumentos por posição apenas no primeiro ou nos dois primeiros argumentos da função.
+Use os argumentos por posição apenas no primeiro ou nos dois primeiros argumentos da função.
 
 
 ---
