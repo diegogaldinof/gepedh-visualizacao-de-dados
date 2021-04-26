@@ -172,40 +172,40 @@ a:hover {
   background-position: center;
   background-color: #180D5B;
 }
-.title-slide .remark-slide-number {
+.slide-titulo .remark-slide-number {
   display: none;
 }
 
 /* slide-b1 */
-.slide-b1 {
-  background-image: url("../img/slide-b1.svg");
+.slide-tabela {
+  background-image: url("../img/slide-tabela.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-.slide-b1 .remark-slide-number {
+.slide-tabela .remark-slide-number {
   display: none;
 }
 
 /* slide-b2 */
-.slide-b2 {
-  background-image: url("../img/slide-b2.svg");
+.slide-r {
+  background-image: url("../img/slide-r.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-.slide-b2 .remark-slide-number {
+.slide-r .remark-slide-number {
   display: none;
 }
 
 /* slide-b3 */
-.slide-b3 {
-  background-image: url("../img/slide-b3.svg");
+.slide-code {
+  background-image: url("../img/slide-code.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-.slide-b3 .remark-slide-number {
+.slide-code .remark-slide-number {
   display: none;
 }
 

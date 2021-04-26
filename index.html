@@ -32,21 +32,8 @@ class: slide-titulo
 
 ---
 
-# Agenda
 
-1. Tabelas:
-
-2. R &amp; RStudio.
-
-3. Code time!
-
----
-
-class: slide-b1
-
----
-
-class: slide-b2
+class: slide-r
 
 ---
 
@@ -65,7 +52,7 @@ Para fins didáticos, uma função possui:
 - **Corpo**: é onde está o código da função.
 
 .footnote[
-Para você entender mais sobre funções, veja o [capítulo 6](https://adv-r.hadley.nz/functions.html#introduction-5) do livro *Advanced R*, do Hadley Wickham.
+Para você entender mais sobre funções, veja o [capítulo 19](https://r4ds.had.co.nz/functions.html) do livro *R for Data Science* e o [capítulo 6](https://adv-r.hadley.nz/functions.html#introduction-5) do livro *Advanced R*, ambos do Hadley Wickham.
 ]
 
 ---
@@ -74,6 +61,20 @@ name: recap-funcao-2
 ### Exemplo
 
 Função `seq()`: cria sequências numéricas.
+
+Argumentos:
+
+- `from`: o valor inicial da sequência;
+
+- `to`: o valor final da sequência;
+
+- `by`: o valor de incremento da sequência.
+
+Para conhecer outros argumentos dessa função, `?seq`.
+
+---
+
+name: recap-funcao-3
 
 - Argumentos declarados pelo nome (a ordem não importa):
 
@@ -95,7 +96,7 @@ seq(to = 10, by = 2, from = 0)
 ```
 
 ---
-name: recap-funcao-3
+name: recap-funcao-4
 
 - Argumentos declarados por posição (a ordem importa):
 
@@ -118,9 +119,15 @@ seq(0, 2, 10)
 ```
 
 
-**Observação**
+**Observação:** use os argumentos por posição apenas no primeiro ou nos dois primeiros argumentos da função.
 
-Use os argumentos por posição apenas no primeiro ou nos dois primeiros argumentos da função.
+**Exemplo**: 
+
+
+
+```r
+seq(0, 10, by = 2)
+```
 
 
 ---
@@ -183,11 +190,9 @@ eu %&gt;%
 
 --
 
-**Observações:** 
+&lt;br&gt;
 
-- Existem funções que não comportam o `%&gt;%`.
-
-- Atalho: `Ctrl + Shift + m`.
+Atalho: `Ctrl + Shift + m`.
 
 .footnote[
 Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projects/01_lab/slides/01_lab.html#116).
@@ -195,8 +200,11 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 ---
 
-## Tabelas no R
 
+class: slide-tabela
+
+
+---
 
 ### Quais são os benefícios?
 
@@ -347,18 +355,26 @@ O pacote mantém o nome das variáveis do banco, por isso é preciso mudar.
 
 ---
 
-class: slide-b3
+class: slide-code
 
 ---
 
 ### Exercício 1
 
-1. Crie uma tabela descritiva com o banco de dados.
+1. Crie uma tabela descritiva do banco de dados:
 
-2. Modifique os nomes das variáveis...
+  - utilize a função `tbl_summary()`.
+
+2. Crie uma lista (função `list()`) chamada `nomes` e altere os nomes das variáveis:
+
+  - x por X;
+  
+  - y por Y;
+  
+  - z por Z.
 
 
-<div class="countdown" id="timer_60835760" style="top:0;right:0;font-size:3em;" data-warnwhen="0">
+<div class="countdown" id="timer_6087010f" style="top:0;right:0;font-size:3em;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -519,11 +535,27 @@ trial %&gt;%
 
 ---
 
-class: slide-b3
+class: slide-code
 
 ---
 
 ### Exercício 2
+
+<div class="countdown" id="timer_6087004d" style="top:0;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+1. Crie uma tabela descritiva com *média* e *desvio padrão* para variáveis contínuas e *n amostral* para variáveis categóricas:
+
+  - utilize o argumento `statistic`;
+
+  - utilize a função `list()`;
+  
+  - lembre-se da função `all_continuous()` e `all_categorical()`;
+  
+  - lembre-se: média (*mean*), desvio padrão (*sd*) e n amostral (*n*).
+
 
 ---
 
@@ -584,67 +616,31 @@ Em `all_categorical() ~ c(0, 0, 1)`:
 
 ❓ O que acontecerá com as casas decimais da **média** e **desvio padrão**?
 
+
+
 ---
 
-class: slide-b3
+class: slide-code
 
 ---
 
 ### Exercício 3
 
 
-1. Crie uma tabela usando média e desvio padrão para variáveis contínuas.
+1. Faça uma tabela em função da variável categórica XXXXXXXXXX do banco de dados:
 
-2. Faça uma tabela em função de uma variável categórica do banco de dados.
+  - utilize o argumento `by`.
 
 
-<div class="countdown" id="timer_608356e9" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60870140" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 
 ---
 
-### `add_overall()`
 
-É utilizada após a função `tbl_summary(..., by = variavel)`.
-
-Cria uma nova coluna com as estatísticas descritivas *gerais* das variáveis.
-
-
-
-```r
-trial %&gt;%
-  tbl_summary(by = variavel_grupo) %&gt;%
-  add_overall()
-```
-
-
-???
-É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
-
-
----
-
-#### `col_label`
-
-É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
-
-O *default* é `"**Overall**, N = {N}"`. Vamos trocar para `"**Total**, N = {N}"`.
-
-
-```r
-trial %&gt;%
-  tbl_summary(by = variavel_grupo) %&gt;%
-  add_overall(col_label = "**Total**, N = {N}")
-```
-
-
-
----
-
-
-### `add_p()`
+### [`add_p()`](http://www.danieldsjoberg.com/gtsummary/reference/add_p.tbl_summary.html)
 
 É uma função usada para **comparar** grupos.
 
@@ -717,14 +713,33 @@ Testes disponíveis na função `add_p()`:
 
 Para conferir outros testes disponíveis ou para aprender a criar uma nova função de testes, veja o [manual](http://www.danieldsjoberg.com/gtsummary/reference/tests.html).
 
----
-
-#### `test.args`
-
-
 
 ---
 
+class: slide-code
+
+---
+
+name: exercicio-4
+
+### Exercício 4
+
+1. Crie uma tabela de comparação em função da variável XXXXXXXXX:
+
+  - utilize o argumento `by` na função `tbl_summary()`;
+  
+  - utilize a função `add_p()`.
+  
+2. Modifique o teste de comparação das variáveis contínuas para teste *t*:
+
+  - lembre-se da função `all_continuous()`.
+
+<div class="countdown" id="timer_6086fe9a" style="top:0;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
 
 #### `pvalue_fun`
 
@@ -742,6 +757,44 @@ trial %&gt;%
 
 ???
 É recomendado usar a função style_pvalue() porque criar uma outra função de p-value é difícil. Essa função já tem alguns padrões criados para facilitar.
+
+
+---
+
+### `add_overall()`
+
+É utilizada após a função `tbl_summary(..., by = variavel)`.
+
+Cria uma nova coluna com as estatísticas descritivas *gerais* das variáveis.
+
+
+
+```r
+trial %&gt;%
+  tbl_summary(by = variavel_grupo) %&gt;%
+  add_overall()
+```
+
+
+???
+É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
+
+
+---
+
+#### `col_label`
+
+É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
+
+O *default* é `"**Overall**, N = {N}"`. Vamos trocar para `"**Total**, N = {N}"`.
+
+
+```r
+trial %&gt;%
+  tbl_summary(by = variavel_grupo) %&gt;%
+  add_overall(col_label = "**Total**, N = {N}")
+```
+
 
 
 ---
@@ -789,27 +842,128 @@ trial %&gt;%
 
 ---
 
-TÓPICOS:
+### `theme_gtsummary_language()`
 
-tbl_merge
+Essa função pode ser utilizada para *traduzir* algumas informações padronizadas no pacote `gtsummary`.
 
-tbl_stack
+O argumento `language = "pt"` muda o idioma para português.
 
-tbl_strata
-
-
-modify_header - entra (modifica os headers das colunas) (vamos ter que falar da show_header_names() e all_stat_cols())
-
-modify_spanning_header - boa também (ela vai adiconar um header acima)
+Utilize essa função **antes** de executar os códigos que criam a tabela.
 
 
-theme_gtsummary_mean_sd()
+```r
+theme_gtsummary_language(language = "pt") # muda o idioma padrao
+trial %&gt;%                                 # cria a tabela
+  tbl_summary()
+```
 
-theme_gtsummary_language
 
 ---
 
+Você também pode alterar a marcação de decimal para `","` usando o argumento `decimal.mark = ","`.
+
+
+```r
+theme_gtsummary_language(language = "pt",
+                         decimal.mark = ",")
+trial %&gt;%
+  tbl_summary()
+```
+
+
+---
+
+
 ### Como salvar a tabela?
+
+O pacote `gtsummary` não consegue salvar a tabela em *Word*. Precisaremos da ajuda do pacote [`flextable`](https://davidgohel.github.io/flextable/).
+
+
+```r
+install.packages("flextable")
+library(flextable)
+```
+
+--
+
+#### Passo a passo para salvar a tabela em *Word*
+
+**1.** &lt;span style="color: #180D5B; font-weight: 600"&gt;Guardar&lt;/span&gt; a tabela em um objeto:
+
+
+```r
+minha_tabela &lt;- trial %&gt;%
+                tbl_summary(by = variavel_grupo) %&gt;%
+                add_p() %&gt;%
+                bold_labels()
+```
+
+---
+
+**2.** &lt;span style="color: #180D5B; font-weight: 600"&gt;Converter&lt;/span&gt; a tabela em `flextable` usando a função `gtsummary::as_flex_table()`:
+
+
+```r
+minha_tabela &lt;- minha_tabela %&gt;%
+                as_flex_table()
+```
+
+&lt;br&gt;
+
+--
+
+
+**3.** &lt;span style="color: #180D5B; font-weight: 600"&gt;Salvar&lt;/span&gt; tabela em um documento *Word* com a função `flextable::save_as_docx()`:
+
+
+```r
+save_as_docx(minha_tabela, path = "tabela-1.docx")
+```
+
+&lt;br&gt;
+
+Um novo documento *Word* será criado com a tabela inserida.
+
+**Observação:** lembre-se do `.docx`!
+
+---
+
+class: slide-code
+
+---
+
+### Exercício 5
+
+<div class="countdown" id="timer_6086ffcd" style="top:0;right:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+1. Salve uma tabela descritiva em *Word* com o nome "gepedh":
+
+  - utilize a tabela que você criou no [Exercício 4](#exercicio-4);
+  
+  - lembre-se do `.docx`.
+
+
+---
+
+### Referências
+
+Para você dominar os tópicos abordados nessa apresentação:
+
+- Livro [*R for Data Science*](https://r4ds.had.co.nz/index.html), do Hadley Wickham.
+
+- Livro [*Advanced R*](https://adv-r.hadley.nz/index.html), do Hadley Wickham.
+
+- [Website](http://www.danieldsjoberg.com/gtsummary/index.html) do pacote `gtsummary`.
+
+
+&lt;br&gt;
+
+&gt; Essa apresentação foi construída no `RStudio` com os recursos dos pacotes `xaringan`, `xaringanthemer`, `xaringanExtra` e `countdown`.
+
+
+
 
 ---
 

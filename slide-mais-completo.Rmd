@@ -49,8 +49,22 @@ class: slide-titulo
 
 ---
 
+# Agenda
+
+1. Tabelas:
+
+2. R & RStudio.
+
+3. Code time!
+
+---
+
+class: slide-tabela
+
+---
 
 class: slide-r
+
 
 ---
 
@@ -188,11 +202,8 @@ Ideia adaptada de [Andrew Heiss](https://evalsp21.classes.andrewheiss.com/projec
 
 ---
 
+## Tabelas no R
 
-class: slide-tabela
-
-
----
 
 ### Quais são os benefícios?
 
@@ -347,9 +358,7 @@ class: slide-code
 
 ### Exercício 1
 
-1. Crie uma tabela descritiva do banco de dados:
-
-  - utilize a função `tbl_summary()`.
+1. Crie uma tabela descritiva do banco de dados (utilize a função `tbl_summary()`).
 
 2. Crie uma lista (função `list()`) chamada `nomes` e altere os nomes das variáveis:
 
@@ -529,7 +538,7 @@ countdown(minutes = 5, seconds = 0, top = 0)
 ```
 
 
-1. Crie uma tabela descritiva com *média* e *desvio padrão* para variáveis contínuas e *n amostral* para variáveis categóricas:
+1. Crie uma tabela descritiva com *média* e *desvio padrão* para variáveis contínuas e *n amostral* para variáveis categóricas.
 
   - utilize o argumento `statistic`;
 
@@ -596,8 +605,6 @@ Em `all_categorical() ~ c(0, 0, 1)`:
 
 `r emo::ji("question")` O que acontecerá com as casas decimais da **média** e **desvio padrão**?
 
-
-
 ---
 
 class: slide-code
@@ -607,9 +614,7 @@ class: slide-code
 ### Exercício 3
 
 
-1. Faça uma tabela em função da variável categórica XXXXXXXXXX do banco de dados:
-
-  - utilize o argumento `by`.
+1. Faça uma tabela em função da variável categórica XXXXXXXXXX do banco de dados.
 
 
 ```{r, echo = FALSE, eval = TRUE}
@@ -619,8 +624,44 @@ countdown(minutes = 5, seconds = 0, top = 0)
 
 ---
 
+### `add_overall()`
 
-### [`add_p()`](http://www.danieldsjoberg.com/gtsummary/reference/add_p.tbl_summary.html)
+É utilizada após a função `tbl_summary(..., by = variavel)`.
+
+Cria uma nova coluna com as estatísticas descritivas *gerais* das variáveis.
+
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_overall()
+```
+
+
+???
+É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
+
+
+---
+
+#### `col_label`
+
+É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
+
+O *default* é `"**Overall**, N = {N}"`. Vamos trocar para `"**Total**, N = {N}"`.
+
+```{r}
+trial %>%
+  tbl_summary(by = variavel_grupo) %>%
+  add_overall(col_label = "**Total**, N = {N}")
+```
+
+
+
+---
+
+
+### `add_p()`
 
 É uma função usada para **comparar** grupos.
 
@@ -694,30 +735,6 @@ Para conferir outros testes disponíveis ou para aprender a criar uma nova funç
 
 ---
 
-class: slide-code
-
----
-
-name: exercicio-4
-
-### Exercício 4
-
-1. Crie uma tabela de comparação em função da variável XXXXXXXXX:
-
-  - utilize o argumento `by` na função `tbl_summary()`;
-  
-  - utilize a função `add_p()`.
-  
-2. Modifique o teste de comparação das variáveis contínuas para teste *t*:
-
-  - lembre-se da função `all_continuous()`.
-
-```{r, echo = FALSE, eval = TRUE}
-countdown(minutes = 5, seconds = 0, top = 0)
-```
-
-
----
 
 #### `pvalue_fun`
 
@@ -734,42 +751,6 @@ trial %>%
 
 ???
 É recomendado usar a função style_pvalue() porque criar uma outra função de p-value é difícil. Essa função já tem alguns padrões criados para facilitar.
-
-
----
-
-### `add_overall()`
-
-É utilizada após a função `tbl_summary(..., by = variavel)`.
-
-Cria uma nova coluna com as estatísticas descritivas *gerais* das variáveis.
-
-
-```{r}
-trial %>%
-  tbl_summary(by = variavel_grupo) %>%
-  add_overall()
-```
-
-
-???
-É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
-
-
----
-
-#### `col_label`
-
-É um argumento que modifica o nome da coluna adicionada pela função `add_overall()`.
-
-O *default* é `"**Overall**, N = {N}"`. Vamos trocar para `"**Total**, N = {N}"`.
-
-```{r}
-trial %>%
-  tbl_summary(by = variavel_grupo) %>%
-  add_overall(col_label = "**Total**, N = {N}")
-```
-
 
 
 ---
@@ -814,35 +795,25 @@ trial %>%
 
 ---
 
-### `theme_gtsummary_language()`
+TÓPICOS:
 
-Essa função pode ser utilizada para *traduzir* algumas informações padronizadas no pacote `gtsummary`.
+tbl_merge
 
-O argumento `language = "pt"` muda o idioma para português.
+tbl_stack
 
-Utilize essa função **antes** de executar os códigos que criam a tabela.
-
-```{r}
-theme_gtsummary_language(language = "pt") # muda o idioma padrao
-trial %>%                                 # cria a tabela
-  tbl_summary()
-```
+tbl_strata
 
 
----
+modify_header - entra (modifica os headers das colunas) (vamos ter que falar da show_header_names() e all_stat_cols())
 
-Você também pode alterar a marcação de decimal para `","` usando o argumento `decimal.mark = ","`.
+modify_spanning_header - boa também (ela vai adiconar um header acima)
 
-```{r}
-theme_gtsummary_language(language = "pt",
-                         decimal.mark = ",")
-trial %>%
-  tbl_summary()
-```
 
+theme_gtsummary_mean_sd()
+
+theme_gtsummary_language
 
 ---
-
 
 ### Como salvar a tabela?
 
@@ -857,7 +828,7 @@ library(flextable)
 
 #### Passo a passo para salvar a tabela em *Word*
 
-**1.** <span style="color: #180D5B; font-weight: 600">Guardar</span> a tabela em um objeto:
+**1.** Armazenar a tabela em um objeto:
 
 ```{r}
 minha_tabela <- trial %>%
@@ -868,7 +839,7 @@ minha_tabela <- trial %>%
 
 ---
 
-**2.** <span style="color: #180D5B; font-weight: 600">Converter</span> a tabela em `flextable` usando a função `gtsummary::as_flex_table()`:
+**2.** Usar a função `gtsummary::as_flex_table()` para converter a tabela em `flextable`:
 
 ```{r}
 minha_tabela <- minha_tabela %>%
@@ -880,7 +851,7 @@ minha_tabela <- minha_tabela %>%
 --
 
 
-**3.** <span style="color: #180D5B; font-weight: 600">Salvar</span> tabela em um documento *Word* com a função `flextable::save_as_docx()`:
+**3.** Usar a função `flextable::save_as_docx()` para salvar a tabela em um documento *Word*:
 
 ```{r}
 save_as_docx(minha_tabela, path = "tabela-1.docx")
@@ -890,46 +861,7 @@ save_as_docx(minha_tabela, path = "tabela-1.docx")
 
 Um novo documento *Word* será criado com a tabela inserida.
 
-**Observação:** lembre-se do `.docx`!
-
----
-
-class: slide-code
-
----
-
-### Exercício 5
-
-```{r, echo = FALSE, eval = TRUE}
-countdown(minutes = 5, seconds = 0, top = 0)
-```
-
-1. Salve uma tabela descritiva em *Word* com o nome "gepedh":
-
-  - utilize a tabela que você criou no [Exercício 4](#exercicio-4);
-  
-  - lembre-se do `.docx`.
-
-
----
-
-### Referências
-
-Para você dominar os tópicos abordados nessa apresentação:
-
-- Livro [*R for Data Science*](https://r4ds.had.co.nz/index.html), do Hadley Wickham.
-
-- Livro [*Advanced R*](https://adv-r.hadley.nz/index.html), do Hadley Wickham.
-
-- [Website](http://www.danieldsjoberg.com/gtsummary/index.html) do pacote `gtsummary`.
-
-
-<br>
-
-> Essa apresentação foi construída no `RStudio` com os recursos dos pacotes `xaringan`, `xaringanthemer`, `xaringanExtra` e `countdown`.
-
-
-
+**Observação:** lembre-se do `.docx`.
 
 ---
 
