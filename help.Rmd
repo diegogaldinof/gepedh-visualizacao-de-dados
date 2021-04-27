@@ -19,6 +19,14 @@ output:
 
 Por gentileza, faça o download dos materiais que iremos utilizar na reunião [nesta pasta do Google Drive](https://drive.google.com/drive/folders/1SoCJZnfuPr8ERFmSVWO9Te_Les12ztX8?usp=sharing).
 
+### Fale com a gente
+
+Caso você ficar com alguma dúvida, nós estaremos disponíveis para ajudar você:
+
+- **Diego**: 27/04, das 18:00 às 19:00, e 28/04, das 08:00 às 08:45. Acesse o [link do Google Meet](https://meet.google.com/cgj-armd-xtw).
+
+- **Jaqueline**: 27/04,  das 17:00 às 18:00, e 09:00 às 09:30. Acesse o [link do Google Meet](https://meet.google.com/vjx-dkqi-yfz).
+
 ### Instalando R e RStudio
 
 Para participar da reunião, você precisará estar com o R e o RStudio instalados e atualizados, de preferência nas versões mais recentes. A versão mais recente do R é 4.0.5 e você pode baixá-la [aqui](https://cran-r.c3sl.ufpr.br/). A versão mais recente do RStudio é 1.4.1106 e você pode baixá-la [aqui](https://www.rstudio.com/products/rstudio/download/#download).
@@ -69,13 +77,7 @@ RStudio.Version()$version
 Você também pode copiar e colar o erro no Google. Com certeza alguém já terá passado pelo mesmo problema.
 
 
-### Fale com a gente
 
-Caso você ficou com alguma dúvida, nós estaremos disponíveis para ajudar você:
-
-- **Diego**: 27/04, das 18:00 às 19:00, e 28/04, das 08:00 às 08:45. Acesse o [link do Google Meet](https://meet.google.com/cgj-armd-xtw).
-
-- **Jaqueline**: 27/04,  das 17:00 às 18:00, e 09:00 às 09:30. Acesse o [link do Google Meet](https://meet.google.com/vjx-dkqi-yfz).
 
 
 ### Criando um projeto no R
