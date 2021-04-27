@@ -581,7 +581,7 @@ class: slide-code
 ### Exercício 2
 
 ```{r, echo = FALSE, eval = TRUE}
-countdown(minutes = 5, seconds = 0, top = 0)
+countdown(minutes = 10, seconds = 0, top = 0)
 ```
 
 
@@ -685,7 +685,7 @@ class: slide-code
 
 
 ```{r, echo = FALSE, eval = TRUE}
-countdown(minutes = 5, seconds = 0, top = 0)
+countdown(minutes = 10, seconds = 0, top = 0)
 ```
 
 
@@ -791,7 +791,7 @@ name: exercicio-4
   - lembre-se da função `all_continuous()`.
 
 ```{r, echo = FALSE, eval = TRUE}
-countdown(minutes = 5, seconds = 0, top = 0)
+countdown(minutes = 10, seconds = 0, top = 0)
 ```
 
 
