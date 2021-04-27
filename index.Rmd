@@ -891,8 +891,6 @@ Um novo documento *Word* será criado com a tabela inserida.
 
 **Observação:** lembre-se do `.docx`!
 
-
-
 ---
 
 ### Referências

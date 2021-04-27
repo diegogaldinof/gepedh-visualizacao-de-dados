@@ -1,6 +1,5 @@
 ---
-title: "Visualização de dados"
-subtitle: "Tabelas"
+title: "Visualização de dados - Tabelas"
 author: "Diego Galdino França & Jaqueline Gazque"
 output:
    html_document:
