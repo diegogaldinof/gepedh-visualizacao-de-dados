@@ -18,11 +18,7 @@ output:
 
 ### Materiais
 
-Por gentileza, faça o download dos materiais que iremos utilizar na reunião:
-
-- [Banco de dados](link google frive)
-
-- [Códigos](link google drive)
+Por gentileza, faça o download dos materiais que iremos utilizar na reunião [nesta pasta do Google Drive](https://drive.google.com/drive/folders/1SoCJZnfuPr8ERFmSVWO9Te_Les12ztX8?usp=sharing).
 
 ### Instalando R e RStudio
 
