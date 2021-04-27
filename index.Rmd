@@ -244,10 +244,12 @@ class: slide-tabela
 
 ]
 
+<br><br>
+
 
 .pull-right[
 ```{r echo=FALSE, eval = TRUE, out.width="100%", fig.align='center'}
-knitr::include_graphics("http://www.pngmart.com/files/11/Blank-Package-PNG-Pic.png")
+knitr::include_graphics("https://johnbraun.blog/assets/posts/creating-a-laravel-package-1/cover.jpeg")
 ```
 ]
 
