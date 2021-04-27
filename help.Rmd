@@ -68,12 +68,14 @@ RStudio.Version()$version
 
 Você também pode copiar e colar o erro no Google. Com certeza alguém já terá passado pelo mesmo problema.
 
-Caso você não tenha encontrado uma solução, nós estaremos disponíveis para ajudar você [por esse link](https://meet.google.com/cgj-armd-xtw) nos dias:
 
-- 27/04, das 17:00 às 18:00 (Jaqueline) e 18:00 às 19:00 (Diego)
+### Fale com a gente
 
-- 28/04, das 08:00 às 08:45 (Diego) e 09:00 às 09:30 (Jaqueline)
+Caso você ficou com alguma dúvida, nós estaremos disponíveis para ajudar você:
 
+- **Diego**: 27/04, das 18:00 às 19:00, e 28/04, das 08:00 às 08:45. Acesse o [link do Google Meet](https://meet.google.com/cgj-armd-xtw).
+
+- **Jaqueline**: 27/04,  das 17:00 às 18:00, e 09:00 às 09:30. Acesse o [link do Google Meet](https://meet.google.com/vjx-dkqi-yfz).
 
 
 ### Criando um projeto no R
