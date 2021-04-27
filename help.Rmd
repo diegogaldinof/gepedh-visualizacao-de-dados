@@ -69,7 +69,7 @@ RStudio.Version()$version
 
 Você também pode copiar e colar o erro no Google. Com certeza alguém já terá passado pelo mesmo problema.
 
-Caso você não tenha encontrado uma solução, o Diego e a Jaqueline estarão disponíveis para ajudar você [por esse link](meet.google.com/cgj-armd-xtw) nos dias:
+Caso você não tenha encontrado uma solução, nós estaremos disponíveis para ajudar você [por esse link](meet.google.com/cgj-armd-xtw) nos dias:
 
 - 27/04, das 17:00 às 18:00 (Jaqueline) e 18:00 às 19:00 (Diego)
 
@@ -93,7 +93,7 @@ knitr::include_graphics("img/projeto.gif")
 
 <br>
 
-Com o projeto criado, copie e cole os arquivos (por exemplo, o banco de dados e o `R script` que enviamos) para a pasta do projeto.
+Com o projeto criado, copie e cole os arquivos (por exemplo, o banco de dados e o `R script` que você fez o download) para a pasta do projeto.
 
 <br><br>
 
