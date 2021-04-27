@@ -2,8 +2,27 @@
 title: "Visualização de dados"
 subtitle: "Tabelas"
 author: "Diego Galdino França & Jaqueline Gazque"
-output: html_document
+output:
+   html_document:
+        theme: cerulean
+
 ---
+
+
+<style type="text/css">
+  body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+</style>
+
+### Materiais
+
+Por gentileza, faça o download dos materiais que iremos utilizar na reunião:
+
+- [Banco de dados](link google frive)
+
+- [Códigos](link google drive)
 
 ### Instalando R e RStudio
 
@@ -13,7 +32,7 @@ Caso você tenha dúvidas, siga esse [tutorial](https://www.youtube.com/watch?v=
 
 **Observação:** Instale o R e depois o RStudio.
 
-Caso você já tenha o R e o RStudio instalados, você também pode atualizar o R e o RStudio diretamente no R seguindo esse [tutorial](https://uvastatlab.github.io/phdplus/installR.html).
+Caso você já tenha o R e o RStudio instalados, você também pode atualizar o R e o RStudio diretamente pelo R seguindo esse [tutorial](https://uvastatlab.github.io/phdplus/installR.html).
 
 
 ### Instalando o Pandoc
@@ -30,11 +49,10 @@ Iremos utilizar pacotes de funções que irão nos ajudar a ler o banco de dados
 Com o R e o RStudio instalados/atualizados, abra o RStudio e, *mesmo que você já tenha algum desses pacotes instalados no seu computador*, execute os códigos:
 
 
-```{r eval = FALSE, echo=TRUE}
+```{r eval = FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 install.packages("readxl")
 install.packages("tidyverse")
 install.packages("gtsummary")
-install.packages("flextable")
 ```
 
 
@@ -53,24 +71,33 @@ RStudio.Version()$version
 ```
 
 
-Você também pode copiar e colar o erro no Google: com certeza alguém já terá passado pelo mesmo problema.
+Você também pode copiar e colar o erro no Google. Com certeza alguém já terá passado pelo mesmo problema.
 
-Caso você não tenha encontrado uma solução, o Diego estará disponível, das 18:00 às 19:00, para ajudar você pelo link: meet.google.com/cgj-armd-xtw.
+Caso você não tenha encontrado uma solução, o Diego e a Jaqueline estarão disponíveis para ajudar você [por esse link](meet.google.com/cgj-armd-xtw) nos dias:
+
+- 27/04, das 17:00 às 18:00 (Jaqueline) e 18:00 às 19:00 (Diego)
+
+- 28/04, das 08:00 às 08:45 (Diego) e 09:00 às 09:30 (Jaqueline)
+
 
 
 ### Criando um projeto no R
 
 Um projeto no R é uma pasta que contém um arquivo `.Rproj` e que será utilizada como um ambiente de trabalho para o R.
 
-Não é necessário fazer isso para a reunião, mas acostume-se a criar projetos para as suas análises. Essa pasta ajuda a manter os arquivos relacionados as suas análises, bancos de dados e scripts de códigos em um só lugar.
+Não é necessário (mas nós **recomendamos**) fazer isso para a reunião, mas acostume-se a criar projetos para as suas análises. Projetos ajudam você a manter os arquivos relacionados as suas análises, bancos de dados e scripts de códigos em um só lugar.
 
 Para criar um novo projeto:
+
+<br>
 
 ```{r echo = FALSE}
 knitr::include_graphics("img/projeto.gif")
 ```
 
+<br>
 
+Com o projeto criado, copie e cole os arquivos (por exemplo, o banco de dados e o `R script` que enviamos) para a pasta do projeto.
 
-
+<br><br>
 
