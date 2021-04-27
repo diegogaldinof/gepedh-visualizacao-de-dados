@@ -287,13 +287,6 @@ library(gtsummary)
 
 - Integração com outros pacotes (e.g., `gt`, `flextable`, `huxtable`)
 
----
-
-### Banco de dados
-
-Aqui, pegar um banco de dados do R e arrumar ele para ser usado nos próximos passos.
-
-Lembrar de mudar as classes das variáveis para detectar certinho
 
 ---
 
@@ -307,9 +300,11 @@ Calcula estatísticas descritivas para variáveis contínuas, categóricas e bin
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary()
 ```
+
+&lt;img src="img/fig1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -325,10 +320,11 @@ Uso: `variavel_1 ~ "Variável 1"`
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = variavel_1 ~ "Variável 1") # apenas uma variavel
 ```
 
+&lt;img src="img/fig2.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -339,12 +335,13 @@ Para editar o nome de duas ou mais variáveis, criar uma *lista* com a função 
 
 
 ```r
-nomes_variaveis &lt;- list(var2 ~ "Variável 2",
-                        var1 ~ "Variável 1")
-trial %&gt;%
+nomes_variaveis &lt;- list(var1 ~ "Variável 1",
+                        var2 ~ "Variável 2")
+banco %&gt;%
   tbl_summary(label = nomes_variaveis) # tbl_summary(label = list(...))
 ```
 
+&lt;img src="img/fig3.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Uma outra forma é por meio do pacote [`labelled`](http://larmarange.github.io/labelled/).
@@ -363,23 +360,43 @@ class: slide-code
 
 ### Exercício 1
 
-1. Crie uma tabela descritiva do banco de dados:
-
-  - utilize a função `tbl_summary()`.
-
-2. Crie uma lista (função `list()`) chamada `nomes` e altere os nomes das variáveis:
-
-  - x por X;
-  
-  - y por Y;
-  
-  - z por Z.
-
-
-<div class="countdown" id="timer_60870bc2" style="top:0;right:0;font-size:3em;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<div class="countdown" id="timer_60889b13" style="top:0;right:0;font-size:3em;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
+
+1. Crie uma tabela descritiva do banco de dados.
+
+2. Crie uma lista (função `list()`) chamada `nomes_variaveis` e altere os nomes das variáveis:
+
+.pull-left[
+
+- idade *por* Idade;
+  
+- tempo_pratica *por* Tempo de prática;
+  
+- parte_selecao *por* Fez parte da seleção;
+  
+- ranking *por* Ranking;
+]
+
+.pull-right[
+
+- p_harmoniosa *por* Paixão Harmoniosa;
+  
+- p_obsessiva *por* Paixão Obsessiva;
+
+- criterio_p *por* Critério da Paixão.
+  
+]
+
+---
+
+3. Crie uma tabela descritiva utilizando as variáveis renomeadas:
+
+  - utilize a lista `nomes_variaveis`;
+  
+  - utilize o argumento `label`.
 
 
 ---
@@ -392,7 +409,7 @@ Exemplos:
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(statistic = list(variavel_1 ~ "{median}"))
 ```
 
@@ -400,7 +417,7 @@ trial %&gt;%
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(statistic = c(variavel_1, variavel_2) ~ "{mean}")
 ```
 
@@ -408,7 +425,7 @@ trial %&gt;%
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(statistic = list(c(variavel_1, variavel_2) ~ "{mean}",
                                variavel_3 ~ "{n}"))
 ```
@@ -427,9 +444,11 @@ Outras maneiras de uso podem ser encontradas no [manual](http://www.danieldsjobe
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis)
 ```
+
+&lt;img src="img/fig3.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -439,11 +458,12 @@ Mudando para média e desvio padrão:
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
               statistic = list(nome_da_variavel ~ "{mean} ({sd})"))
 ```
 
+&lt;img src="img/fig4.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -451,11 +471,13 @@ Usando a função `all_continuous()` para modificar todas as variáveis contínu
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
               statistic = list(all_continuous() ~ "{mean} ({sd})"))
 ```
 
+
+&lt;img src="img/fig5.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -471,9 +493,7 @@ Medidas para variáveis contínuas:
 - `{sd}`: desvio padrão
 
 
-.footnote[
 Outras medidas possíveis para essa função estão disponíveis em `?tbl_summary`.
-]
 
 ---
 
@@ -484,9 +504,11 @@ Outras medidas possíveis para essa função estão disponíveis em `?tbl_summar
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis)
 ```
+
+&lt;img src="img/fig6.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -494,10 +516,13 @@ Mudando para n / N (amostra) e porcentagem:
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
-              statistic = list(nome_da_variavel ~ "{n} / {N} ({p})"))
+              statistic = list(nome_da_variavel ~ "{n} / {N} ({p}%)"))
 ```
+
+
+&lt;img src="img/fig7.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -506,10 +531,14 @@ Usando a função `all_categorical()` para modificar todas as variáveis categó
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
-              statistic = list(all_categorical() ~ "{n} / {N} ({p})"))
+              statistic = list(all_categorical() ~ "{n} / {N} ({p}%)"))
 ```
+
+
+&lt;img src="img/fig7.png" width="30%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -521,6 +550,8 @@ Medidas para variáveis categóricas:
 
 - `{p}`: porcentagem
 
+Para colocar o símbolo `%`, coloque-o **fora** das chaves (`{p}%`).
+
 
 ---
 
@@ -528,12 +559,15 @@ Modificando as variáveis contínuas e categóricas:
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
-              statistic = list(all_categorical() ~ "{n} / {N} ({p})",
-                               all_continuous() ~ "{mean} ({sd})",
-                               var1 ~ "{median}"))
+              statistic = list(all_categorical() ~ "{n} / {N} ({p}%)",
+                               all_continuous() ~ "{mean} ({sd})"))
 ```
+
+---
+
+&lt;img src="img/fig8.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -543,7 +577,7 @@ class: slide-code
 
 ### Exercício 2
 
-<div class="countdown" id="timer_60870be5" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60889bc9" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -565,16 +599,17 @@ class: slide-code
 
 Recebe **uma** variável categórica (e.g., `sexo`).
 
-- Estatísticas descritivas serão calculadas para cada **categoria** da variável (e.g., `feminino` e `masculino`).
+Estatísticas descritivas serão calculadas para cada **categoria** da variável (e.g., `feminino` e `masculino`).
 
-- É um ponto de partida para os testes de comparação de grupos.
+É um ponto de partida para os testes de comparação de grupos.
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo)
 ```
 
+&lt;img src="img/fig9.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -586,7 +621,7 @@ Uso: `digits = variavel_1 ~ #`, onde # indica o número de casas decimais.
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
               statistic = list(all_categorical() ~ "{n} / {N} ({p})",
                                all_continuous() ~ "{mean} ({sd})"),
@@ -594,18 +629,24 @@ trial %&gt;%
                             all_continuous() ~ 0))
 ```
 
+
+---
+
+&lt;img src="img/fig10.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+
 ---
 
 Para especificar a quantidade de casas decimais para **cada** medida descritiva (e.g., *n*, média e desvio padrão):
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(label = nomes_variaveis,
               statistic = list(all_categorical() ~ "{n} / {N} ({p})",
                                all_continuous() ~ "{mean} ({sd})"),
               digits = list(all_categorical() ~ c(0, 0, 1),
-                            all_continuous() ~ c(0, 1)))
+                            all_continuous() ~ c(1, 1)))
 ```
 
 Em `all_categorical() ~ c(0, 0, 1)`:
@@ -619,6 +660,9 @@ Em `all_categorical() ~ c(0, 0, 1)`:
 ❓ O que acontecerá com as casas decimais da **média** e **desvio padrão**?
 
 
+---
+
+&lt;img src="img/fig11.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -629,12 +673,12 @@ class: slide-code
 ### Exercício 3
 
 
-1. Faça uma tabela em função da variável categórica XXXXXXXXXX do banco de dados:
+1. Faça uma tabela em função da variável categórica *Ranking*:
 
   - utilize o argumento `by`.
 
 
-<div class="countdown" id="timer_60870ab0" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60889b1d" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -652,11 +696,12 @@ Adiciona uma coluna de valores-p automaticamente.
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo) %&gt;%
   add_p()
 ```
 
+&lt;img src="img/fig12.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ???
 É usada depois da tbl_summary() porque o primeiro argumento do add_p() recebe a saída da tbl_summary() (objeto tbl_summary).
@@ -673,12 +718,13 @@ Especifica o teste estatístico que será utilizado para comparar os grupos.
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo) %&gt;%
   add_p(test = list(all_continuous() ~ "wilcox.test",
                     all_categorical() ~ "chisq.test.no.correct"))
 ```
 
+&lt;img src="img/fig13.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -726,7 +772,7 @@ name: exercicio-4
 
 ### Exercício 4
 
-1. Crie uma tabela de comparação em função da variável XXXXXXXXX:
+1. Crie uma tabela de comparação em função da variável *Fez parte da Seleção*:
 
   - utilize o argumento `by` na função `tbl_summary()`;
   
@@ -736,7 +782,7 @@ name: exercicio-4
 
   - lembre-se da função `all_continuous()`.
 
-<div class="countdown" id="timer_60870a28" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_60889a8d" style="top:0;right:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -751,10 +797,13 @@ Esse argumento recebe uma função. É recomendado usar a função `style_pvalue
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo) %&gt;%
-  add_p(pvalue_fun = function(x) style_pvalue(x, digits = 2, decimal.mark = ","))
+  add_p(pvalue_fun = function(x) style_pvalue(x, digits = 3, decimal.mark = ","))
 ```
+
+
+&lt;img src="img/fig14.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ???
@@ -762,6 +811,8 @@ trial %&gt;%
 
 
 ---
+
+## Funções extras
 
 ### `add_overall()`
 
@@ -772,11 +823,17 @@ Cria uma nova coluna com as estatísticas descritivas *gerais* das variáveis.
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo) %&gt;%
   add_overall()
 ```
 
+&lt;img src="img/fig15.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[
+Ir para [Como salvar a tabela?](#salvar).
+]
 
 ???
 É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
@@ -792,16 +849,15 @@ O *default* é `"**Overall**, N = {N}"`. Vamos trocar para `"**Total**, N = {N}"
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo) %&gt;%
   add_overall(col_label = "**Total**, N = {N}")
 ```
 
+&lt;img src="img/fig16.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ---
-
-### Funções extras
 
 - `bold_labels()`: Coloca os **nomes** das variáveis em **negrito**.
 
@@ -809,11 +865,12 @@ trial %&gt;%
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary() %&gt;%
   bold_labels()
 ```
 
+&lt;img src="img/fig17.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -823,11 +880,12 @@ trial %&gt;%
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary() %&gt;%
   italicize_levels()
 ```
 
+&lt;img src="img/fig18.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -835,12 +893,13 @@ trial %&gt;%
 
 
 ```r
-trial %&gt;%
+banco %&gt;%
   tbl_summary(by = variavel_grupo) %&gt;%
   add_p() %&gt;%
   bold_p(t = 0.01)
 ```
 
+&lt;img src="img/fig19.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -855,10 +914,11 @@ Utilize essa função **antes** de executar os códigos que criam a tabela.
 
 ```r
 theme_gtsummary_language(language = "pt") # muda o idioma padrao
-trial %&gt;%                                 # cria a tabela
+banco %&gt;%                                 # cria a tabela
   tbl_summary()
 ```
 
+&lt;img src="img/fig20.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -868,13 +928,19 @@ Você também pode alterar a marcação de decimal para `","` usando o argumento
 ```r
 theme_gtsummary_language(language = "pt",
                          decimal.mark = ",")
-trial %&gt;%
+banco %&gt;%
   tbl_summary()
 ```
 
+&lt;img src="img/fig21.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+.footnote[
+Para voltar ao tema padrão, use `reset_gtsummary_theme()`.
+]
 
 ---
 
+name: salvar
 
 ### Como salvar a tabela?
 
@@ -894,7 +960,7 @@ library(flextable)
 
 
 ```r
-minha_tabela &lt;- trial %&gt;%
+minha_tabela &lt;- banco %&gt;%
                 tbl_summary(by = variavel_grupo) %&gt;%
                 add_p() %&gt;%
                 bold_labels()
@@ -927,25 +993,6 @@ save_as_docx(minha_tabela, path = "tabela-1.docx")
 Um novo documento *Word* será criado com a tabela inserida.
 
 **Observação:** lembre-se do `.docx`!
-
----
-
-class: slide-code
-
----
-
-### Exercício 5
-
-<div class="countdown" id="timer_60870ccf" style="top:0;right:0;" data-warnwhen="0">
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-
-1. Salve uma tabela descritiva em *Word* com o nome "gepedh":
-
-  - utilize a tabela que você criou no [Exercício 4](#exercicio-4);
-  
-  - lembre-se do `.docx`.
-
 
 ---
 
