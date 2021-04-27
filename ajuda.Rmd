@@ -1,0 +1,76 @@
+---
+title: "Visualização de dados"
+subtitle: "Tabelas"
+author: "Diego Galdino França & Jaqueline Gazque"
+output: html_document
+---
+
+### Instalando R e RStudio
+
+Para participar da reunião, você precisará estar com o R e o RStudio instalados e atualizados, de preferência nas versões mais recentes. A versão mais recente do R é 4.0.5 e você pode baixá-la [aqui](https://cran-r.c3sl.ufpr.br/). A versão mais recente do RStudio é 1.4.1106 e você pode baixá-la [aqui](https://www.rstudio.com/products/rstudio/download/#download).
+
+Caso você tenha dúvidas, siga esse [tutorial](https://www.youtube.com/watch?v=6iZj3k9EBc4).
+
+**Observação:** Instale o R e depois o RStudio.
+
+Caso você já tenha o R e o RStudio instalados, você também pode atualizar o R e o RStudio diretamente no R seguindo esse [tutorial](https://uvastatlab.github.io/phdplus/installR.html).
+
+
+### Instalando o Pandoc
+
+Para algumas funções que iremos trabalhar, você precisará instalar um programa chamado **Pandoc**. Baixe o [instalador](https://pandoc.org/installing.html) e instale o programa no seu computador.
+
+O R usará esse programa por baixo dos panos para executar algumas tarefas. Não precisaremos nos preocupar em utilizá-lo manualmente.
+
+
+### Instalando os pacotes necessários
+
+Iremos utilizar pacotes de funções que irão nos ajudar a ler o banco de dados e  construir e salvar as tabelas.
+
+Com o R e o RStudio instalados/atualizados, abra o RStudio e, *mesmo que você já tenha algum desses pacotes instalados no seu computador*, execute os códigos:
+
+
+```{r eval = FALSE, echo=TRUE}
+install.packages("readxl")
+install.packages("tidyverse")
+install.packages("gtsummary")
+install.packages("flextable")
+```
+
+
+Não se preocupe com "letras vermelhas" ou *warnings*. Caso o R mostre algum erro (e.g., *Error in...*), verifique se o seu R e RStudio estão realmente atualizados e se você não cometeu nenhum erro ao digitar os códigos.
+
+Para ver se o R está atualizado:
+
+```{r eval = FALSE, echo=TRUE}
+R.version.string
+```
+
+RStudio:
+
+```{r eval=FALSE, echo=TRUE}
+RStudio.Version()$version
+```
+
+
+Você também pode copiar e colar o erro no Google: com certeza alguém já terá passado pelo mesmo problema.
+
+Caso você não tenha encontrado uma solução, o Diego estará disponível, das 18:00 às 19:00, para ajudar você pelo link: meet.google.com/cgj-armd-xtw.
+
+
+### Criando um projeto no R
+
+Um projeto no R é uma pasta que contém um arquivo `.Rproj` e que será utilizada como um ambiente de trabalho para o R.
+
+Não é necessário fazer isso para a reunião, mas acostume-se a criar projetos para as suas análises. Essa pasta ajuda a manter os arquivos relacionados as suas análises, bancos de dados e scripts de códigos em um só lugar.
+
+Para criar um novo projeto:
+
+```{r echo = FALSE}
+knitr::include_graphics("img/projeto.gif")
+```
+
+
+
+
+

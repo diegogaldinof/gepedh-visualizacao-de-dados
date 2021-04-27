@@ -69,7 +69,9 @@ Para fins didáticos, uma função possui:
 - **Corpo**: é onde está o código da função.
 
 .footnote[
+
 Para você entender mais sobre funções, veja o [capítulo 19](https://r4ds.had.co.nz/functions.html) do livro *R for Data Science* e o [capítulo 6](https://adv-r.hadley.nz/functions.html#introduction-5) do livro *Advanced R*, ambos do Hadley Wickham.
+
 ]
 
 ---
@@ -274,13 +276,6 @@ library(gtsummary)
 
 - Integração com outros pacotes (e.g., `gt`, `flextable`, `huxtable`)
 
----
-
-### Banco de dados
-
-Aqui, pegar um banco de dados do R e arrumar ele para ser usado nos próximos passos.
-
-Lembrar de mudar as classes das variáveis para detectar certinho
 
 ---
 
@@ -841,6 +836,10 @@ trial %>%
 ```
 
 
+.footnote[
+Para voltar ao tema padrão, use `reset_gtsummary_theme()`.
+]
+
 ---
 
 
@@ -892,23 +891,6 @@ Um novo documento *Word* será criado com a tabela inserida.
 
 **Observação:** lembre-se do `.docx`!
 
----
-
-class: slide-code
-
----
-
-### Exercício 5
-
-```{r, echo = FALSE, eval = TRUE}
-countdown(minutes = 5, seconds = 0, top = 0)
-```
-
-1. Salve uma tabela descritiva em *Word* com o nome "gepedh":
-
-  - utilize a tabela que você criou no [Exercício 4](#exercicio-4);
-  
-  - lembre-se do `.docx`.
 
 
 ---
