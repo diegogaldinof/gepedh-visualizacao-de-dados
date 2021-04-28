@@ -51,8 +51,7 @@ dados %>% select(idade, tempo_pratica, ranking) %>%
 
 #fig6
 dados %>% select(idade, tempo_pratica, ranking) %>%
-                tbl_summary(label = names,
-                            statistic = list(ranking ~ "{n} / {N} ({p}%)")) %>% as_gt() %>%
+                tbl_summary(label = names) %>% as_gt() %>%
                 gtsave(filename = "img/fig6.png")
 
 #fig7
