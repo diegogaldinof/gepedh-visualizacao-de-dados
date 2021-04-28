@@ -285,7 +285,7 @@ library(gtsummary)
 
 Função principal do `gtsummary`.
 
-Calcula estatísticas descritivas para variáveis contínuas, categóricas e binárias.
+Calcula estatísticas descritivas para variáveis contínuas e categóricas.
 
 
 
