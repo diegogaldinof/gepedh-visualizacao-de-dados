@@ -25,7 +25,7 @@ Caso você ficar com alguma dúvida, nós estaremos disponíveis para ajudar voc
 
 - **Diego**: 27/04, das 18:00 às 19:00, e 28/04, das 08:00 às 08:45. Acesse o [link do Google Meet](https://meet.google.com/cgj-armd-xtw).
 
-- **Jaqueline**: 27/04,  das 17:00 às 18:00, e 09:00 às 09:30. Acesse o [link do Google Meet](https://meet.google.com/vjx-dkqi-yfz).
+- **Jaqueline**: 27/04,  das 17:00 às 18:00. Acesse o [link do Google Meet](https://meet.google.com/vjx-dkqi-yfz).
 
 ### Instalando R e RStudio
 
