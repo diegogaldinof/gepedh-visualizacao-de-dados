@@ -843,9 +843,6 @@ knitr::include_graphics("img/fig15.png")
 ```
 
 
-.footnote[
-Ir para [Como salvar a tabela?](#salvar).
-]
 
 ???
 É usada depois da tbl_summary() porque o primeiro argumento do add_overall() recebe a saída do tbl_summary.
