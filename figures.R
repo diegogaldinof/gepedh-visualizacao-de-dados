@@ -60,8 +60,15 @@ names2 <- list(idade ~ "Idade",
                parte_selecao ~ "Fez parte da Seleção")
 dados %>% select(idade, ranking, parte_selecao) %>%
                 tbl_summary(label = names2,
-                            statistic = list(all_categorical() ~ "{n} / {N} ({p}%)")) %>% as_gt() %>%
+                            statistic = list(ranking ~ "{n} / {N} ({p}%)")) %>% as_gt() %>%
                 gtsave(filename = "img/fig7.png")
+
+
+#fig7-2
+dados %>% select(idade, ranking, parte_selecao) %>%
+                tbl_summary(label = names2,
+                            statistic = list(all_categorical() ~ "{n} / {N} ({p}%)")) %>% as_gt() %>%
+                gtsave(filename = "img/fig7-2.png")
 
 
 #fig8
@@ -158,7 +165,7 @@ dados %>% select(idade, ranking) %>%
 #fig19
 dados %>% select(idade, tempo_pratica, ranking) %>%
                 tbl_summary(label = names,
-                            by = ranking) %>% add_p() %>% bold_p() %>%
+                            by = ranking) %>% add_p() %>% bold_p(t = 0.2) %>%
                 as_gt() %>%
                 gtsave(filename = "img/fig19.png")
 

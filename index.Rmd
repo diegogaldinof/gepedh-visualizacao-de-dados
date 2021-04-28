@@ -308,7 +308,7 @@ knitr::include_graphics("img/fig1.png")
 Especifica os nomes das variáveis na tabela.
 
 
-Uso: `variavel_1 ~ "Variável 1"`
+Uso: `label = variavel_1 ~ "Variável 1"`
 
 ```{r}
 banco %>%
@@ -540,7 +540,7 @@ banco %>%
 
 
 ```{r eval=TRUE, echo=FALSE, out.width="30%"}
-knitr::include_graphics("img/fig7.png")
+knitr::include_graphics("img/fig7-2.png")
 ```
 
 
@@ -628,7 +628,7 @@ Uso: `digits = variavel_1 ~ #`, onde # indica o número de casas decimais.
 ```{r}
 banco %>%
   tbl_summary(label = nomes_variaveis,
-              statistic = list(all_categorical() ~ "{n} / {N} ({p})",
+              statistic = list(all_categorical() ~ "{n} / {N} ({p}%)",
                                all_continuous() ~ "{mean} ({sd})"),
               digits = list(all_categorical() ~ 1,
                             all_continuous() ~ 0))
@@ -649,7 +649,7 @@ Para especificar a quantidade de casas decimais para **cada** medida descritiva 
 ```{r}
 banco %>%
   tbl_summary(label = nomes_variaveis,
-              statistic = list(all_categorical() ~ "{n} / {N} ({p})",
+              statistic = list(all_categorical() ~ "{n} / {N} ({p}%)",
                                all_continuous() ~ "{mean} ({sd})"),
               digits = list(all_categorical() ~ c(0, 0, 1),
                             all_continuous() ~ c(1, 1)))
@@ -700,7 +700,7 @@ countdown(minutes = 10, seconds = 0, top = 0)
 
 Adiciona uma coluna de valores-p automaticamente.
 
-É utilizada após a função `tbl_summary(..., by = variavel)`.
+É utilizada após a função `tbl_summary(..., by = variavel_grupo)`.
 
 ```{r}
 banco %>%
@@ -888,9 +888,9 @@ knitr::include_graphics("img/fig17.png")
 
 ---
 
-- `bold_levels()`: Coloca os **níveis** das variáveis em **negrito**.
+- `bold_levels()`: Coloca as **categorias** das variáveis em **negrito**.
 
-- `italicize_levels()`: Coloca os *níveis* das variáveis em *itálico*.
+- `italicize_levels()`: Coloca os *categorias* das variáveis em *itálico*.
 
 ```{r}
 banco %>%
@@ -904,13 +904,13 @@ knitr::include_graphics("img/fig18.png")
 
 ---
 
-- `bold_p()`: Coloca os valores-p em **negrito** de acordo com algum valor (*default* é < 0.05).
+- `bold_p()`: Coloca os valores-p em **negrito** de acordo com algum nível de significância (*default* é < 0.05).
 
 ```{r}
 banco %>%
   tbl_summary(by = variavel_grupo) %>%
   add_p() %>%
-  bold_p(t = 0.01)
+  bold_p(t = 0.2)
 ```
 
 ```{r eval=TRUE, echo=FALSE, out.width="70%"}
